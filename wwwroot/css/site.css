@@ -29,3 +29,12 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+div.todo-panel {
+  margin-top: 15px;
+}
+
+table tr.done {
+  text-decoration: line-through;
+  color: #888;
+}

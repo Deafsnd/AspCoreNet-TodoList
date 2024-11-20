@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreTodo.Data;
+using AspNetCoreTodo.Services;
+using Microsoft.Extensions.DependencyInjection;
+using AspNetCoreTodo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,16 +13,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<ITodoItemService, TodoItemService>();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
@@ -42,5 +50,30 @@ app.MapControllerRoute(
 
 app.MapRazorPages()
    .WithStaticAssets();
+// .. 
+app.MapRazorPages();
+
+// initialize database BEFORE app starts running
+InitializeDatabase(app);
+
 
 app.Run();
+
+void InitializeDatabase(WebApplication app)
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+
+        try
+        {
+            SeedData.InitializeAsync(services).Wait();
+        }
+        catch (Exception ex)
+        {
+            var logger = services
+                .GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "Error occurred seeding the DB.");
+        }
+    }
+}

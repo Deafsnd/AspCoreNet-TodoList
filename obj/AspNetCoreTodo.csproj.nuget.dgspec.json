@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NickM\\Documents\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {}
+    "C:\\Gli\\CSC395\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NickM\\Documents\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
+    "C:\\Gli\\CSC395\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NickM\\Documents\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "projectUniqueName": "C:\\Gli\\CSC395\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
         "projectName": "AspNetCoreTodo",
-        "projectPath": "C:\\Users\\NickM\\Documents\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
+        "projectPath": "C:\\Gli\\CSC395\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\AspNetCoreTodo.csproj",
         "packagesPath": "C:\\Users\\NickM\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NickM\\Documents\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\obj\\",
+        "outputPath": "C:\\Gli\\CSC395\\CSharpHelloWorld\\AspNetCoreTodo\\AspNetCoreTodo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Humanizer": {
+              "target": "Package",
+              "version": "[2.14.1, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.0-rc.2.24474.3, )"
@@ -67,8 +71,18 @@
               "version": "[9.0.0-rc.2.24474.1, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.0-rc.2.24474.1, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
